@@ -25,7 +25,12 @@ jobs:
         run: npm run type-check || echo "No type-check script found, skipping..."
       
       - name: Build project
-        run: npm run build
+        run: |
+          npm run build
+          echo "Build completed. Checking output..."
+          ls -la dist/
+          echo "Contents of dist/index.html:"
+          head -20 dist/index.html
       
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v4
